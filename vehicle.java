@@ -6,7 +6,7 @@ public class vehicle {
     static List<Integer>password=new ArrayList<>();
     static List<String> username=new ArrayList<>();
     static List<Integer>userbookid=new ArrayList<>();
-    static int[][] ticket=  new int[2][5];
+    static int[][] ticket=  new int[10][5];
     //-----------waiting list-----------------------------
     static List<Integer> waitinguserid=new ArrayList<>();
     static List<Integer>depaturearea=new ArrayList<>();
@@ -24,11 +24,14 @@ public class vehicle {
    static List<String>travellerdepature=new ArrayList<>();
    static List<String>ticketstatus=new ArrayList<>();
    static List<Integer>travellerseat=new ArrayList<>();
+   static List<String>travelvehicle=new ArrayList<>();
    //-------------------------------------------------------
     static int currentuser;
     static boolean possibility;
     static int  ticketbookingid;
     static  String usermailid;
+    //----------------vehicle number plate--------------------
+    static String[] numberplate={"TN 30 J 6106   - SUZUKI ALTO","TN 30 J 8146   - SUZUKI SWIFT","TN 36 AU 3939   - TATA INDICA","TN 27 B 9292   - FORD FIGO","TN 90 D 4444   - HYUNDAI I20","PY 13 C 6501   -FORD FIGO","KL 33 TE 3826   - SUZUKI WAGONR","TN 01 GG 8952    - RENAULT KWID","TN 44 GF 2002   -DATSUN GO","KL 17 KU 0401  -CHEVERLOT BEAT"};
     public static void main(String[] args){
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -175,7 +178,7 @@ public class vehicle {
                 }
             }
             if(count==distance && possibility==true)
-               System.out.println("Available vehicle No: "+(i+1)); 
+               System.out.println("Available vehicle No: "+(i+1)+".  "+numberplate[i]); 
            
         }
         //-----------booking history----------
@@ -204,6 +207,7 @@ public class vehicle {
         requiredseat--;
          ticketbookingid=Integer.parseInt(currentuser+""+(b+1)+""+(d+1)+""+(requiredseat+1));
          travellerbookid.add( ticketbookingid);
+         travelvehicle.add(numberplate[requiredseat]);
          ticketstatus.add("Booked");
         for(int j=b;j<=d;j++){
             ticket[requiredseat][j]=ticketbookingid;
@@ -298,6 +302,7 @@ public static void bookinghistory(){
                 System.out.println("Booking Id      :"+travellerbookid.get(i));
                 System.out.println("Boarding City   :"+travellerboarding.get(i));
                 System.out.println("Depature City   :"+travellerdepature.get(i));
+                System.out.println("Booked Vehicle  :"+travelvehicle.get(i));
                 System.out.println("Status          :"+ticketstatus.get(i));
                 System.out.println("----------------------------------------------");
             }
